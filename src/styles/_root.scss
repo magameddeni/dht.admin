@@ -1,0 +1,14 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #131314;
+    --color-color: #eeeeee;
+    --color-border: #444746;
+    --color-light-bg: #303030;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-border: #e4e4e4;
+  }
+}

@@ -1,0 +1,21 @@
+.main {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  &__header {
+    padding: 20px;
+    font-size: 20px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__categories {
+    margin: 20px;
+  }
+
+  &__page_footer {
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+}

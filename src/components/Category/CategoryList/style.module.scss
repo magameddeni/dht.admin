@@ -1,0 +1,9 @@
+.list {
+  border-right: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  &__item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px 30px 10px 10px;
+  }
+}
