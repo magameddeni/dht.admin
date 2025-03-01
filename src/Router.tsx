@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router"
-import { Category } from "./page/Category"
 import Products from "./page/Product"
-import { Container } from "./components/Container"
-import { routes } from "./constants"
+import { Category } from "./page/Category"
+import { routes } from "constants/index"
+import { Layout } from "components/Layout"
 
 const Router = () => {
   // const navigate = useNavigate()
@@ -19,13 +19,13 @@ const Router = () => {
   //   )
 
   return (
-    <Container>
+    <Layout>
       <Routes>
         <Route index element={<></>} />
         <Route path={routes.CATEGORY} element={<Category />} />
         <Route path={routes.PRODUCTS} element={<Products />} />
       </Routes>
-    </Container>
+    </Layout>
   )
 }
 

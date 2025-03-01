@@ -1,0 +1,29 @@
+.main {
+  background: var(--color-bg);
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  width: 400px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  &__header {
+    padding: 20px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__body {
+    padding: 20px;
+  }
+
+  &__footer {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  @media (min-widht: 767px) {
+    width: 100%;
+  }
+}

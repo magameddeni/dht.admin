@@ -1,5 +1,5 @@
-import { ICategory } from "../../../interface"
-import { Icon } from "../../UI"
+import { ICategory } from "interface/index"
+import { Icon, Text } from "UI/index"
 import s from "./style.module.scss"
 
 interface ICategoryListProps {
@@ -18,17 +18,23 @@ const CategoryList = ({
   return (
     <div className={s.list}>
       {selectedCategory && (
-        <div onClick={removeLastCategoryTree} className={s.list__item}>
+        <Text
+          as='div'
+          cursor='pointer'
+          onClick={removeLastCategoryTree}
+          className={s.list__item}>
           <Icon name='chevron-left' /> {selectedCategory.name}
-        </div>
+        </Text>
       )}
       {categories.map((c) => (
-        <div
+        <Text
+          as='div'
+          cursor='pointer'
           key={c.id}
           onClick={() => onClickItem?.(c)}
           className={s.list__item}>
           {c.name}
-        </div>
+        </Text>
       ))}
     </div>
   )

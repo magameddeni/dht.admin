@@ -1,8 +1,9 @@
+import { ICategory } from "interface/"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { $api } from "../../http/axios"
-import { ICategory } from "../../interface"
-import { CategoryList } from "../../components/Category"
+import { $api } from "src/http"
+import { CategoryList, CreateCategory } from "components/Category"
+import { Drawer, Text } from "components/UI"
 import s from "./style.module.scss"
 
 interface ICategoryWithSubcategories extends ICategory {
@@ -10,6 +11,7 @@ interface ICategoryWithSubcategories extends ICategory {
 }
 
 const Category = () => {
+  const [showDrawer, setShowDrawer] = useState(false)
   const [categories, setCategories] = useState<ICategoryWithSubcategories[]>([])
   const [categoriesTree, setCategoriesTree] = useState<
     ICategoryWithSubcategories[]
@@ -46,7 +48,7 @@ const Category = () => {
       return mainCategories
     },
 
-    queryKey: ["categories"],
+    queryKey: ["categories", "all"],
   })
 
   const handleCategoryItemClick = (c: ICategory) =>
@@ -74,7 +76,14 @@ const Category = () => {
         />
       </div>
 
-      <div className={s.main__page_footer}>подвал сайта</div>
+      <div className={s.main__page_footer}>
+        <Text as='div' cursor='pointer' onClick={() => setShowDrawer(true)}>
+          Создать категорию
+        </Text>
+      </div>
+      <Drawer show={showDrawer} onClose={() => setShowDrawer(false)}>
+        <CreateCategory parent_category={categoriesTree.at(-1)} />
+      </Drawer>
     </div>
   )
 }

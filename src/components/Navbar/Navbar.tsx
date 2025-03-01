@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { routes } from "../../constants"
+import { routes } from "constants/index"
 import s from "./style.module.scss"
 
 const Navbar = () => {

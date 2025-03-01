@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
+import { Navbar } from "components/Navbar"
 import s from "./style.module.scss"
-import { Navbar } from "../Navbar"
 
-const Container = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className={s.main}>
       <div className={s.main__navbar}>
@@ -13,4 +13,4 @@ const Container = ({ children }: { children: ReactNode }) => {
   )
 }
 
-export default Container
+export default Layout

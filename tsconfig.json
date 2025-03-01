@@ -7,11 +7,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*", "./dist/*", ""],
-      "pages/*": ["src/pages/*"],
-      "components/*": ["src/components/*"],
-      "interface/*": ["src/@interface/*"],
-      "public/*": ["public/*"]
+      "src/*": ["src/*"]
     }
   }
 }

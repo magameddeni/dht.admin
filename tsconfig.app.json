@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
@@ -20,7 +20,19 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "constants/*": ["src/constants/index"],
+      "interface/*": ["src/interface/index"],
+      "hooks/*": ["src/hooks/*"],
+      "styles/*": ["src/styles/*"],
+      "UI/*": ["src/components/UI/*"]
+    }
   },
+
   "include": ["src"]
 }
