@@ -1,6 +1,6 @@
 import { components, OptionProps } from "react-select"
-import { ISelectOption } from "../"
-import { Icon } from "../../"
+import { ISelectOption } from "@/components/UI"
+import { Icon } from "@/components/UI"
 
 export const SelectOption = ({ ...props }: OptionProps<ISelectOption>) => (
   <components.Option {...props}>

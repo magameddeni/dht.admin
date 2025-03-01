@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router"
-import Products from "./page/Product"
-import { Category } from "./page/Category"
-import { routes } from "constants/index"
-import { Layout } from "components/Layout"
+import { Products } from "@/page/Products"
+import { Category } from "@/page/Category"
+import { routes } from "@/constants"
+import { Layout } from "@/components/Layout"
 
 const Router = () => {
   // const navigate = useNavigate()

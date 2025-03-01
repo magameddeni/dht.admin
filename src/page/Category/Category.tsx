@@ -1,9 +1,9 @@
-import { ICategory } from "interface/"
+import { ICategory } from "@/interface"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { $api } from "src/http"
-import { CategoryList, CreateCategory } from "components/Category"
-import { Drawer, Text } from "components/UI"
+import { $api } from "@/http"
+import { CategoryList, CreateCategory } from "@/components/Category"
+import { Drawer, Text } from "@/components/UI"
 import s from "./style.module.scss"
 
 interface ICategoryWithSubcategories extends ICategory {

@@ -1,8 +1,8 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react"
 import ReactDOM from "react-dom"
 import cx from "classnames"
-import { useOnClickOutside } from "hooks/index"
-import { Icon } from "UI/index"
+import { useOnClickOutside } from "@/hooks"
+import { Icon } from "@/components/UI"
 import s from "./style.module.scss"
 
 export interface ITableTooltipProps extends PropsWithChildren {

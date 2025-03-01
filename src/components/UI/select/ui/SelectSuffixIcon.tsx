@@ -1,5 +1,5 @@
 import { components, DropdownIndicatorProps } from "react-select"
-import { Icon } from "../../"
+import { Icon } from "@/components/UI"
 
 interface ISelectSuffixIconProps extends DropdownIndicatorProps {
   suffixIcon?: string | undefined

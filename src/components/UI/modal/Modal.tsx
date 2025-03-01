@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useEffect } from "react"
 import BaseModal from "react-modal"
 import cx from "classnames"
-import { Icon } from "UI/index"
+import { Icon } from "@/components/UI"
 
 interface IModalProps extends PropsWithChildren {
   isOpen: boolean

@@ -1,4 +1,4 @@
-import { ISelectOption } from "../"
+import { ISelectOption } from "@/components/UI"
 
 export const data2Select = <T>(
   value: T,

@@ -1,6 +1,6 @@
 import React, { ForwardedRef, PropsWithChildren } from "react"
 import cx from "classnames"
-import { ISize } from "interface/index"
+import { ISize } from "@/interface"
 import s from "./style.module.scss"
 
 interface ITextProps extends ISize, PropsWithChildren {

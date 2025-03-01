@@ -1,5 +1,5 @@
 import { Row } from "@tanstack/react-table"
-import { Icon, Text } from "UI/index"
+import { Icon, Text } from "@/components/UI"
 import { ITableRowFeatures } from "../model"
 import s from "./elements.module.scss"
 import { TableTooltip } from "./tableTooltip"

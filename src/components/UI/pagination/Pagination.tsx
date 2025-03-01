@@ -1,6 +1,6 @@
 import React from "react"
 import cx from "classnames"
-import { Button, Icon } from "UI/index"
+import { Button, Icon } from "@/components/UI"
 import s from "./style.module.scss"
 
 interface IPaginationProps {

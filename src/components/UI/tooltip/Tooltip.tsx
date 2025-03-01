@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useRef, useState } from "react"
 import cx from "classnames"
-import { Icon } from "UI/index"
+import { Icon } from "@/components/UI"
 import s from "./style.module.scss"
 
 interface ITooltipProps extends PropsWithChildren {

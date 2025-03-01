@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react"
 import cx from "classnames"
-import { IColor, ISize } from "../../../interface"
+import { IColor, ISize } from "@/interface"
 
 export interface IIconProps extends ISize, IColor, PropsWithChildren {
   name?: string

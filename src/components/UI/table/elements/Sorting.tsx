@@ -1,6 +1,6 @@
 import { Header, RowData } from "@tanstack/react-table"
 import cx from "classnames"
-import { Icon } from "UI/index"
+import { Icon } from "@/components/UI"
 import s from "./elements.module.scss"
 
 interface ISortingProps {

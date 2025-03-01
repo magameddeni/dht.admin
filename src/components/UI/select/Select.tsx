@@ -1,8 +1,13 @@
 import React, { useState, ForwardedRef, useEffect } from "react"
 import cx from "classnames"
 import BaseSelect, { DropdownIndicatorProps } from "react-select"
-import { FormError, FormLabel, ISelectOption } from "UI/index"
-import { SelectOption, SelectSuffixIcon } from "./ui"
+import {
+  FormError,
+  FormLabel,
+  ISelectOption,
+  SelectOption,
+  SelectSuffixIcon,
+} from "@/components/UI"
 import s from "../form/style.module.scss"
 
 interface ISelect {

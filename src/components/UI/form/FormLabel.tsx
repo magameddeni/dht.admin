@@ -1,5 +1,5 @@
 import cx from "classnames"
-import { Text } from "UI/index"
+import { Text } from "@/components/UI"
 import s from "./style.module.scss"
 
 interface IFormLabel {

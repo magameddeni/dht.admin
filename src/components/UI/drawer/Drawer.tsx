@@ -1,8 +1,8 @@
 import { PropsWithChildren, useEffect } from "react"
 import ReactDOM from "react-dom"
 import cx from "classnames"
-import { Icon } from "UI/index"
-import { useWindowSize, useMountTransition } from "hooks/index"
+import { Icon } from "@/components/UI"
+import { useWindowSize, useMountTransition } from "@/hooks"
 import s from "./style.module.scss"
 
 interface IDrawerProps extends PropsWithChildren {

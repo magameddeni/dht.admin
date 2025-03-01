@@ -1,5 +1,5 @@
-import { ICategory } from "interface/index"
-import { Icon, Text } from "UI/index"
+import { ICategory } from "@/interface"
+import { Icon, Text } from "@/components/UI"
 import s from "./style.module.scss"
 
 interface ICategoryListProps {

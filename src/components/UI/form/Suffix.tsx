@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react"
 import s from "./style.module.scss"
-import { Icon } from "UI/index"
+import { Icon } from "@/components/UI"
 
 interface ISuffixProps extends PropsWithChildren {
   suffix?: string | undefined

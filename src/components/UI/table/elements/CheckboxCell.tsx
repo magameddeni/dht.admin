@@ -1,5 +1,5 @@
 import React, { HTMLProps, useEffect } from "react"
-import { Checkbox } from "UI/index"
+import { Checkbox } from "@/components/UI"
 
 const CheckboxCell = ({
   indeterminate,

@@ -24,13 +24,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "src/*": ["src/*"],
-      "components/*": ["src/components/*"],
-      "constants/*": ["src/constants/index"],
-      "interface/*": ["src/interface/index"],
-      "hooks/*": ["src/hooks/*"],
-      "styles/*": ["src/styles/*"],
-      "UI/*": ["src/components/UI/*"]
+      "@/*": ["src/*"]
     }
   },
 

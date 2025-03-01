@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react"
 import cx from "classnames"
-import { IIconProps, Icon } from "UI/index"
+import { IIconProps, Icon } from "@/components/UI"
 import s from "./style.module.scss"
 
 interface IButtonProps extends PropsWithChildren {
