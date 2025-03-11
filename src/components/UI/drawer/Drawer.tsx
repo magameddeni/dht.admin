@@ -49,7 +49,7 @@ const Drawer = ({
           <Icon
             className={s["drawer__close-icon"]}
             onClick={onClose}
-            name='close'
+            name='x'
           />
         ) : (
           <Icon

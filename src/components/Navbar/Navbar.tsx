@@ -6,6 +6,7 @@ const Navbar = () => {
   const linkList = [
     { href: routes.CATEGORY, title: "Категории" },
     { href: routes.PRODUCTS, title: "Товары" },
+    { href: routes.CREATE_PRODUCTS, title: "Создание товара" },
   ]
 
   return (

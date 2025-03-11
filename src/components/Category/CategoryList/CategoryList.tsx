@@ -26,7 +26,7 @@ const CategoryList = ({
           <Icon name='chevron-left' /> {selectedCategory.name}
         </Text>
       )}
-      {categories.map((c) => (
+      {categories?.map((c) => (
         <Text
           as='div'
           cursor='pointer'

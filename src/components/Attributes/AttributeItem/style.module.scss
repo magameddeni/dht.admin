@@ -1,0 +1,12 @@
+.wrapper {
+  &__unit_type {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+  }
+
+  &__required {
+    padding: 10px 0;
+  }
+}

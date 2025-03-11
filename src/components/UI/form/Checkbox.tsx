@@ -30,7 +30,7 @@ const Checkbox = ({
   classNameInputWrapper,
   style,
   type = "checkbox",
-  onChange,
+  onChange = () => {},
   value,
   label,
   disabled,

@@ -1,0 +1,19 @@
+.wrapper {
+  padding: 0 10px 10px;
+
+  &__package {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+  }
+
+  &__btn {
+    padding: 20px 10px 30px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__submit {
+    width: 164px;
+  }
+}

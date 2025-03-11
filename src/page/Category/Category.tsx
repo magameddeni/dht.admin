@@ -1,68 +1,33 @@
-import { ICategory } from "@/interface"
 import { useState } from "react"
-import { useQuery } from "@tanstack/react-query"
-import { $api } from "@/http"
+import { useGetCategories } from "@/api"
+import { useTreeCategories } from "@/lib"
+import { CreateAttributes } from "@/components/Attributes"
 import { CategoryList, CreateCategory } from "@/components/Category"
 import { Drawer, Text } from "@/components/UI"
+import { PageHeader } from "@/components/Layout"
 import s from "./style.module.scss"
 
-interface ICategoryWithSubcategories extends ICategory {
-  sub?: ICategory[]
-}
-
 const Category = () => {
-  const [showDrawer, setShowDrawer] = useState(false)
-  const [categories, setCategories] = useState<ICategoryWithSubcategories[]>([])
-  const [categoriesTree, setCategoriesTree] = useState<
-    ICategoryWithSubcategories[]
-  >([])
+  const [createCategoryModal, setCreateCategoryModal] = useState(false)
+  const [createAttributesModal, setCreateAttributesModal] = useState(false)
 
-  const searchRecursiveSubCategories = (
-    categoryId: number,
-    fullCategories: ICategory[],
-  ): any => {
-    const subCategories = fullCategories?.filter(
-      ({ parent_id }) => parent_id === categoryId,
-    )
-    return subCategories?.map((category) => ({
-      ...category,
-      sub: searchRecursiveSubCategories(category.id, fullCategories),
-    }))
-  }
+  const { data } = useGetCategories()
+  const { handleCategoryItemClick, categoriesTree, removeLastCategoryTree } =
+    useTreeCategories()
 
-  useQuery({
-    queryFn: async () => {
-      const { data: response, status } = await $api.get<ICategory[]>(
-        "/category",
-      )
-      if (status !== 200) return null
-      const mainCategories = response?.filter(({ nesting }) => nesting === 0)
+  const onShowCreateCategoryModal = () => setCreateCategoryModal(true)
+  const onCLoseCreateCategoryModal = () => setCreateCategoryModal(false)
 
-      setCategories(
-        mainCategories.map((category: ICategory) => ({
-          ...category,
-          sub: searchRecursiveSubCategories(category.id, response),
-        })),
-      )
+  const onShowCreateCharacteristicsModal = () => setCreateAttributesModal(true)
 
-      return mainCategories
-    },
+  const onCLoseCreateAttributesModal = () => setCreateAttributesModal(false)
 
-    queryKey: ["categories", "all"],
-  })
-
-  const handleCategoryItemClick = (c: ICategory) =>
-    setCategoriesTree((prev) => [...prev, c])
-
-  const removeLastCategoryTree = () =>
-    setCategoriesTree((prev) => prev.splice(-1, 1))
+  if (!data) return <>Ошибка</>
+  const { categories } = data
 
   return (
     <div className={s.main}>
-      <div className={s.main__header}>
-        <div>Категории</div>
-      </div>
-
+      <PageHeader title='Категория' />
       <div className={s.main__categories}>
         <CategoryList
           onClickItem={handleCategoryItemClick}
@@ -77,12 +42,27 @@ const Category = () => {
       </div>
 
       <div className={s.main__page_footer}>
-        <Text as='div' cursor='pointer' onClick={() => setShowDrawer(true)}>
+        {Boolean(categoriesTree.at(-1)) && (
+          <Text
+            as='div'
+            cursor='pointer'
+            onClick={onShowCreateCharacteristicsModal}>
+            Создать характеристики
+          </Text>
+        )}
+
+        <Text as='div' cursor='pointer' onClick={onShowCreateCategoryModal}>
           Создать категорию
         </Text>
       </div>
-      <Drawer show={showDrawer} onClose={() => setShowDrawer(false)}>
+      <Drawer show={createCategoryModal} onClose={onCLoseCreateCategoryModal}>
         <CreateCategory parent_category={categoriesTree.at(-1)} />
+      </Drawer>
+
+      <Drawer
+        show={createAttributesModal}
+        onClose={onCLoseCreateAttributesModal}>
+        <CreateAttributes parent_category={categoriesTree.at(-1)} />
       </Drawer>
     </div>
   )

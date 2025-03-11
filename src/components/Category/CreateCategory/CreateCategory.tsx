@@ -1,9 +1,9 @@
 import React from "react"
+import { $api } from "@/api"
 import { ICategory } from "@/interface"
 import { Button, Input, Text } from "@/components/UI"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
-import { $api } from "@/http"
 import s from "./style.module.scss"
 
 interface ICreateCategoryProps {

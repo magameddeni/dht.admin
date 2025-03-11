@@ -1,4 +1,4 @@
-@import "../../../styles/media";
+@import "@/styles/media";
 
 .button {
   font-family: var(--font-primary);
@@ -49,6 +49,7 @@
 .view-secondary {
   background-color: var(--color-light-grey);
   color: var(--color-text-grey);
+  border: 1px solid var(--color-border);
 
   &:hover {
     background-color: var(--color-light-grey-hover);

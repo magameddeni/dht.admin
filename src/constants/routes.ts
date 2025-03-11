@@ -1,1 +1,5 @@
-export const routes = { CATEGORY: "category", PRODUCTS: "products" }
+export const routes = {
+  CATEGORY: "category",
+  PRODUCTS: "products",
+  CREATE_PRODUCTS: "create-products",
+}

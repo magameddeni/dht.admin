@@ -2,11 +2,6 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-  &__header {
-    padding: 20px;
-    font-size: 20px;
-    border-bottom: 1px solid var(--color-border);
-  }
 
   &__categories {
     margin: 20px;
@@ -16,6 +11,7 @@
     border-top: 1px solid var(--color-border);
     display: flex;
     justify-content: flex-end;
+    column-gap: 20px;
     padding: 20px;
   }
 }
