@@ -11,7 +11,7 @@ import {
 } from "@tanstack/react-table"
 import cx from "classnames"
 import { Text } from "../"
-import { CheckboxCell, Resizer, Sorting } from "./elements"
+import { CheckboxCell, FeaturesList, Resizer, Sorting } from "./elements"
 import { featuresListColumn, ITableRowFeatures } from "./model"
 import { defaultColumnMinWidth, FEATURE_LIST_COLUMN_ID } from "./const"
 import s from "./style.module.scss"
@@ -31,7 +31,7 @@ interface ITableProps<T> {
   select?: boolean
   manualSelect?: boolean
   initialSelectedRows?: Record<number, boolean>
-  rowFeatures?: (payload?: T) => ITableRowFeatures<T>[]
+  rowFeatures?: (payload?: T, index?: string) => ITableRowFeatures<T>[]
   className?: string
   bodyTrClassName?: string
   shouldChangeColumnsWhenTabChanges?: boolean
@@ -148,7 +148,17 @@ const Table = <T,>({
         }
 
         if (hasRowFeatures) {
-          initialColumns.push(featuresListColumn(rowFeatures))
+          initialColumns.push({
+            id: "features-list",
+            size: defaultColumnMinWidth,
+            enableResizing: false,
+            cell: ({ row }) => (
+              <FeaturesList<T>
+                row={row}
+                features={rowFeatures(row.original, row.id)}
+              />
+            ),
+          })
         }
 
         if (fluid && tableRef?.current) {

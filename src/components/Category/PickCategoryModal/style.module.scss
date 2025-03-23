@@ -1,0 +1,17 @@
+.category {
+  height: 100vh;
+  background: var(--color-bg);
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  &__body {
+    box-sizing: border-box;
+    padding: 60px 10px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+}

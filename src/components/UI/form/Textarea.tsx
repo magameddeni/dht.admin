@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react'
-import cx from 'classnames'
-import { UseFormRegister } from 'react-hook-form'
-import { Suffix } from './Suffix'
-import FormLabel from './FormLabel'
-import FormError from './FormError'
-import s from './style.module.scss'
+import React, { useRef, useState, useEffect } from "react"
+import cx from "classnames"
+import { UseFormRegister } from "react-hook-form"
+import { Suffix } from "./Suffix"
+import FormLabel from "./FormLabel"
+import FormError from "./FormError"
+import s from "./style.module.scss"
 
 interface IInputProps {
   name: string
@@ -66,30 +66,37 @@ const Textarea = ({
   const [isRequired, setIsRequired] = useState<boolean>(false)
 
   const formInputWrapperClassList = cx(
-    s['form-input-wrapper'],
+    s["form-input-wrapper"],
     {
       [s.error]: errors?.[name] || errors?.ref?.name === name,
       [s.fluid]: fluid,
-      [s[`view-${view}`]]: view
+      [s[`view-${view}`]]: view,
     },
-    classNameInputWrapper
+    classNameInputWrapper,
   )
 
   const inputClassList = cx(
     s.input,
     s.textarea,
     {
-      [s['has-suffix']]: suffix,
-      [s['text-center']]: textCenter,
+      [s["has-suffix"]]: suffix,
+      [s["text-center"]]: textCenter,
       fluid,
-      [s.error]: errors?.[name] || errors?.ref?.name === name
+      [s.error]: errors?.[name] || errors?.ref?.name === name,
     },
-    className
+    className,
   )
 
   useEffect(() => {
     setValidation(
-      register ? { ...register(name, { ...rules, onChange: (e: any) => (onChange ? onChange(e) : null) }) } : null
+      register
+        ? {
+            ...register(name, {
+              ...rules,
+              onChange: (e: any) => (onChange ? onChange(e) : null),
+            }),
+          }
+        : null,
     )
     setIsRequired(required || rules?.required?.value)
   }, [])
@@ -97,13 +104,13 @@ const Textarea = ({
   useEffect(() => {
     if (autoHeight) {
       // @ts-ignore
-      inputRef.current.lastElementChild.style.height = 'auto'
+      inputRef.current.lastElementChild.style.height = "auto"
 
       if (value && inputRef?.current?.lastElementChild) {
         // @ts-ignore
         inputRef.current.lastElementChild.style.height = `${Math.min(
           inputRef.current.lastElementChild.scrollHeight,
-          350
+          350,
         )}px`
       }
     }
@@ -114,14 +121,14 @@ const Textarea = ({
       // @ts-ignore
       inputRef.current.lastElementChild.style.height = `${Math.min(
         inputRef.current.lastElementChild.scrollHeight,
-        40
+        40,
       )}px`
     }
   }, [value, isResetHeight])
 
   return (
     <label className={formInputWrapperClassList}>
-      <div className={s['input-container']} ref={inputRef}>
+      <div className={s["input-container"]} ref={inputRef}>
         <FormLabel label={label} required={isRequired} />
         <textarea
           id={id}
@@ -139,9 +146,18 @@ const Textarea = ({
           {...validation}
           {...rest}
         />
-        {suffix && <Suffix suffix={suffix}>{/* {tooltip && <Tooltip tooltipText={tooltip} />} */}</Suffix>}
+        {suffix && (
+          <Suffix suffix={suffix}>
+            {/* {tooltip && <Tooltip tooltipText={tooltip} />} */}
+          </Suffix>
+        )}
       </div>
-      <FormError message={errors?.[name]?.message || (errors?.ref?.name === name && errors?.message)} />
+      <FormError
+        message={
+          errors?.[name]?.message ||
+          (errors?.ref?.name === name && errors?.message)
+        }
+      />
     </label>
   )
 }

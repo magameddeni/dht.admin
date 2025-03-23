@@ -1,5 +1,6 @@
 import { ICategory } from "@/interface"
 import { Icon, Text } from "@/components/UI"
+import cn from "classnames"
 import s from "./style.module.scss"
 
 interface ICategoryListProps {
@@ -7,6 +8,7 @@ interface ICategoryListProps {
   onClickItem?: (c: ICategory) => void
   selectedCategory?: ICategory
   removeLastCategoryTree: () => void
+  border?: boolean
 }
 
 const CategoryList = ({
@@ -15,8 +17,10 @@ const CategoryList = ({
   selectedCategory,
   removeLastCategoryTree,
 }: ICategoryListProps) => {
+  const classnames = cn(s.list)
+
   return (
-    <div className={s.list}>
+    <div className={classnames}>
       {selectedCategory && (
         <Text
           as='div'

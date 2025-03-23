@@ -1,36 +1,58 @@
+import { useState } from "react"
+import cn from "classnames"
 import { Button, Drawer, Input, Text } from "@/components/UI"
 import { Controller, useForm } from "react-hook-form"
-import cn from "classnames"
-import s from "./style.module.scss"
 import { PickCategoryModal } from "@/components/Category/PickCategoryModal"
-import { useState } from "react"
+import { ICategory, IProductMainInfo, ISeller } from "@/interface"
+import { DrawerSellers } from "@/components/Seller/DrawerSellers"
+import { PACKAGE } from "@/constants"
+import s from "./style.module.scss"
 
-const MainInfo = () => {
+interface IMainInfo {
+  onNextStep: (formData: IProductMainInfo) => void
+  mainInfo: IProductMainInfo
+}
+
+const MainInfo: React.FC<IMainInfo> = ({ onNextStep, mainInfo }) => {
   const [showPickCategoryModal, setShowPickCategoryModal] = useState(false)
+  const [showSellerModal, setShowSellersModal] = useState(false)
 
   const {
     control,
     handleSubmit,
     register,
+    setValue,
+    watch,
     formState: { errors },
-  } = useForm()
+  } = useForm<IProductMainInfo>({ defaultValues: { ...mainInfo } })
 
-  const next = (payload: unknown) => {
-    console.log(payload)
+  const submitForm = (formData: IProductMainInfo) => {
+    onNextStep(formData)
+  }
+
+  const onCLoseSellersModal = () => setShowSellersModal(false)
+  const onOpenSellersModal = () => setShowSellersModal(true)
+
+  const handleSellersItemClick = (seller: ISeller) => {
+    setValue("seller", seller)
+    onCLoseSellersModal()
   }
 
   const onOpenShowPickCategoryModal = () => setShowPickCategoryModal(true)
-  const onCloseShowPickCategoryModal = () => setShowPickCategoryModal(false)
+
+  const onCloseShowPickCategoryModal = (categories?: ICategory[]) => {
+    setShowPickCategoryModal(false)
+    if (Array.isArray(categories)) setValue("categories", categories)
+  }
 
   return (
     <>
-      <form onSubmit={handleSubmit(next)}>
+      <form onSubmit={handleSubmit(submitForm)}>
         <div className={s.wrapper}>
           <Input
             classNameInputWrapper='offset-top-24'
-            name='name'
+            name='productName'
             placeholder='Наименование'
-            required
             fluid
             errors={errors}
             register={register}
@@ -56,33 +78,52 @@ const MainInfo = () => {
                 value={
                   value
                     ? value
-                        ?.map(
-                          (item: { name: string; _id: string }) => item.name,
-                        )
-                        .join(" ")
+                        ?.map((item: { name: string }) => item.name)
+                        .join(", ")
                     : ""
                 }
-                suffix='arrow-right'
+                suffix={value?.length > 0 ? "check" : "arrow-right"}
                 errors={errors}
                 fluid
                 onFocus={onOpenShowPickCategoryModal}
-                readOnly
                 register={register}
                 required
               />
             )}
           />
 
+          <Controller
+            name='seller'
+            control={control}
+            rules={{
+              required: { value: true, message: "Не указан магазин" },
+            }}
+            render={({ field: { value } }) => (
+              <Input
+                classNameInputWrapper='offset-top-12'
+                name='seller'
+                placeholder='Магазин'
+                errors={errors}
+                register={register}
+                value={value?.seller_name ?? ""}
+                onFocus={onOpenSellersModal}
+                fluid
+                suffix={value?.seller_name ? "check" : "arrow-right"}
+              />
+            )}
+          />
+
           <Input
             classNameInputWrapper='offset-top-12'
-            name='name'
+            name='barcode'
             placeholder='Штрихкод'
+            errors={errors}
             register={register}
             fluid
           />
           <Input
             classNameInputWrapper='offset-top-12'
-            name='name'
+            name='SKU'
             placeholder='Артикул(в вашей системе)'
             errors={errors}
             register={register}
@@ -90,10 +131,10 @@ const MainInfo = () => {
           />
           <Input
             classNameInputWrapper='offset-top-12'
-            name='name'
+            name='manufacturerSKU'
+            errors={errors}
             placeholder='Артикул производителя'
             register={register}
-            required
             fluid
           />
 
@@ -101,62 +142,20 @@ const MainInfo = () => {
             Вес и габариты товара в упаковке
           </Text>
           <div className={cn("offset-top-20", s.wrapper__package)}>
-            <div>
-              <Input
-                classNameInputWrapper='offset-top-12'
-                name='width'
-                placeholder='Ширина, мм'
-                register={register}
-                required
-                fluid
-                errors={errors}
-                rules={{
-                  required: { value: true, message: "Не указана Ширина, мм" },
-                }}
-              />
-            </div>
-            <div>
-              <Input
-                classNameInputWrapper='offset-top-12'
-                name='height'
-                placeholder='Высота, мм'
-                register={register}
-                required
-                fluid
-                errors={errors}
-                rules={{
-                  required: { value: true, message: "Не указана Высота, мм" },
-                }}
-              />
-            </div>
-            <div>
-              <Input
-                classNameInputWrapper='offset-top-12'
-                name='length'
-                placeholder='Длина, мм'
-                errors={errors}
-                rules={{
-                  required: { value: true, message: "Не указана Длина, мм" },
-                }}
-                register={register}
-                required
-                fluid
-              />
-            </div>
-            <div>
-              <Input
-                classNameInputWrapper='offset-top-12'
-                name='weight'
-                placeholder='Вес, г'
-                errors={errors}
-                register={register}
-                rules={{
-                  required: { value: true, message: "Не указан Вес, г" },
-                }}
-                required
-                fluid
-              />
-            </div>
+            {PACKAGE.map((v) => (
+              <div>
+                <Input
+                  classNameInputWrapper='offset-top-12'
+                  name={v.key}
+                  placeholder={v.value}
+                  register={register}
+                  required
+                  fluid
+                  errors={errors}
+                  rules={v.rules}
+                />
+              </div>
+            ))}
           </div>
 
           <Text size='lg' as='div' className='offset-top-32'>
@@ -166,7 +165,7 @@ const MainInfo = () => {
             <div>
               <Input
                 classNameInputWrapper='offset-top-12'
-                name='price'
+                name='base_price'
                 placeholder='Цена'
                 errors={errors}
                 register={register}
@@ -177,14 +176,57 @@ const MainInfo = () => {
                 fluid
               />
             </div>
-            <Input
-              classNameInputWrapper='offset-top-12'
-              name='discountPrice'
-              placeholder='Цена до скидки'
-              errors={errors}
-              register={register}
-              fluid
-            />
+            <div>
+              <Input
+                classNameInputWrapper='offset-top-12'
+                name='stock_quantity'
+                placeholder='Остатки на складе'
+                errors={errors}
+                register={register}
+                rules={{
+                  required: {
+                    value: true,
+                    message: "Не указаны остатки на складе",
+                  },
+                }}
+                fluid
+                required
+              />
+            </div>
+          </div>
+
+          <Text size='lg' as='div' className='offset-top-32'>
+            Цвет
+          </Text>
+          <div className={cn("offset-top-20", s.wrapper__package)}>
+            <div>
+              <Input
+                classNameInputWrapper='offset-top-12'
+                name='color_name'
+                placeholder='Цвет товара'
+                errors={errors}
+                register={register}
+                rules={{
+                  required: { value: true, message: "Не указана цвет" },
+                }}
+                required
+                fluid
+              />
+            </div>
+            <div>
+              <Input
+                classNameInputWrapper='offset-top-12'
+                name='color_hex'
+                placeholder='hex-цвет'
+                errors={errors}
+                required
+                rules={{
+                  required: { value: true, message: "Не указана hex-цвет" },
+                }}
+                register={register}
+                fluid
+              />
+            </div>
           </div>
         </div>
         <div className={s.wrapper__btn}>
@@ -197,7 +239,13 @@ const MainInfo = () => {
       <Drawer
         show={showPickCategoryModal}
         onClose={onCloseShowPickCategoryModal}>
-        <PickCategoryModal />
+        <PickCategoryModal
+          selectedCategories={watch("categories")}
+          onClose={onCloseShowPickCategoryModal}
+        />
+      </Drawer>
+      <Drawer show={showSellerModal} onClose={onCLoseSellersModal}>
+        <DrawerSellers onClick={handleSellersItemClick} />
       </Drawer>
     </>
   )

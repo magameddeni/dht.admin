@@ -117,7 +117,7 @@ const TableTooltip = ({
             }>
             {children}
           </div>,
-          document.getElementById("__next") as any,
+          document.getElementById("root") as any,
         )
       ) : (
         <div ref={contentRef} className={classNames}>

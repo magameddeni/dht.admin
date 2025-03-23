@@ -1,0 +1,9 @@
+.sellers {
+  width: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+
+  &__table {
+    max-width: 100%;
+  }
+}

@@ -1,8 +1,8 @@
 import { Checkbox, Input } from "@/components/UI"
-import { ICategoryAttribute } from "@/interface"
+import { IAttributes } from "@/interface"
 import s from "./style.module.scss"
 
-const AttributeItem: React.FC<ICategoryAttribute> = ({
+const AttributeItem: React.FC<IAttributes> = ({
   attribute_name,
   data_type,
   unit,

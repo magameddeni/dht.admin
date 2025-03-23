@@ -54,8 +54,9 @@ const Drawer = ({
         ) : (
           <Icon
             onClick={onClose}
+            size='xxx'
             className={s["drawer__back-icon"]}
-            name='arrow-left2'
+            name='plus1'
           />
         )}
       </div>

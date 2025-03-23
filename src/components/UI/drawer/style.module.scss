@@ -46,8 +46,9 @@
 
     .drawer__back-icon {
       position: absolute;
-      left: 16px;
-      top: 36px;
+      transform: rotate(45deg);
+      right: 20px;
+      top: 20px;
       cursor: pointer;
     }
   }

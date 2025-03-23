@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useMutation } from "@tanstack/react-query"
-import { ICategory, ICategoryAttribute } from "@/interface"
+import { ICategory, IAttributes } from "@/interface"
 import { Button, Checkbox, Input, Text } from "@/components/UI"
 import { AttributeItem } from "../AttributeItem"
 import { $api } from "@/api"
@@ -14,14 +14,14 @@ interface ICreateAttributesProps {
 const CreateAttributes: React.FC<ICreateAttributesProps> = ({
   parent_category,
 }) => {
-  const [attributes, setAttributes] = useState<ICategoryAttribute[]>([])
+  const [attributes, setAttributes] = useState<IAttributes[]>([])
   const {
     watch,
     register,
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<ICategoryAttribute>({
+  } = useForm<IAttributes>({
     defaultValues: {
       unit: "",
       data_type: "",
@@ -30,7 +30,7 @@ const CreateAttributes: React.FC<ICreateAttributesProps> = ({
     },
   })
 
-  const onSubmit = (payload: ICategoryAttribute) => {
+  const onSubmit = (payload: IAttributes) => {
     setAttributes((prev) => [...prev, payload])
     setValue("attribute_name", "")
     setValue("data_type", "")

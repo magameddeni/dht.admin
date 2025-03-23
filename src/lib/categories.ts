@@ -5,10 +5,16 @@ interface ICategoryWithSubcategories extends ICategory {
   sub?: ICategory[]
 }
 
-export const useTreeCategories = () => {
+interface IUseTreeCategories {
+  selectedCategories?: ICategory[]
+}
+
+export const useTreeCategories = ({
+  selectedCategories,
+}: IUseTreeCategories) => {
   const [categoriesTree, setCategoriesTree] = useState<
     ICategoryWithSubcategories[]
-  >([])
+  >(selectedCategories ?? [])
 
   const handleCategoryItemClick = (c: ICategory) =>
     setCategoriesTree((prev) => [...prev, c])

@@ -1,0 +1,16 @@
+.create {
+  &__body {
+    padding: 20px;
+  }
+
+  &__footer {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__submit {
+    width: 150px;
+  }
+}

@@ -1,5 +1,4 @@
-@import 'styles/media';
-
+@import "styles/media";
 
 .select {
   display: flex;
@@ -10,7 +9,6 @@
 
   &.fluid {
     width: 100%;
-
     .select__control {
       width: 100%;
     }
@@ -54,7 +52,7 @@
 
       .select__single-value {
         margin: 0;
-        color: var(--color-primary-black)
+        color: var(--color-primary-black);
       }
     }
   }
@@ -82,7 +80,7 @@
 
         &--is-selected {
           color: var(--color-primary-black);
-          background: var(--color-light-grey)
+          background: var(--color-light-grey);
         }
 
         &:focus,
@@ -94,7 +92,6 @@
     }
   }
 }
-
 
 .view-secondary {
   .select {

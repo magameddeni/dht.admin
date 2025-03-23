@@ -1,0 +1,14 @@
+.wrapper {
+  padding: 10px;
+
+  &__form {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    row-gap: 20px;
+  }
+
+  &__footer {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+  }
+}

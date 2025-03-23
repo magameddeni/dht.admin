@@ -1,1 +1,5 @@
 export * from "./MainInfo"
+export * from "./Attributes"
+export * from "./UploadImage"
+export * from "./Preview"
+export * from "./ProductVariant"

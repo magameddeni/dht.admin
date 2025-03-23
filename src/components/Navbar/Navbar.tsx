@@ -7,6 +7,7 @@ const Navbar = () => {
     { href: routes.CATEGORY, title: "Категории" },
     { href: routes.PRODUCTS, title: "Товары" },
     { href: routes.CREATE_PRODUCTS, title: "Создание товара" },
+    { href: routes.SELLERS, title: "Магазины" },
   ]
 
   return (

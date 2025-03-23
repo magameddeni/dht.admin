@@ -13,7 +13,7 @@ const Category = () => {
 
   const { data } = useGetCategories()
   const { handleCategoryItemClick, categoriesTree, removeLastCategoryTree } =
-    useTreeCategories()
+    useTreeCategories({ selectedCategories: [] })
 
   const onShowCreateCategoryModal = () => setCreateCategoryModal(true)
   const onCLoseCreateCategoryModal = () => setCreateCategoryModal(false)
@@ -33,6 +33,7 @@ const Category = () => {
           onClickItem={handleCategoryItemClick}
           removeLastCategoryTree={removeLastCategoryTree}
           selectedCategory={categoriesTree.at(-1)}
+          border
           categories={
             categoriesTree.length === 0
               ? categories
